@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css?s=<?= time() ?>">
+    <style>
+        #loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 1.0);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 9999;
+        }
+
+        #loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #loading-spinner {
+            border: 2px solid #3498db;
+            border-top: 2px solid #ffffff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        #typing_text {
+            white-space: pre-line;
+        }
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body onload="playOnLoad()">
+
+
+
+    <video id="video-background" muted loop playsinline>
+        <source src="./assets/1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+
+
+
+
+    <div id="loading">
+        <div id="loading-spinner"></div>
+    </div>
+
+    <div style="opacity: 0;">
+        <audio id="myAudio1" controls autoplay preload="auto">>
+            <source src="./assets/audio/sound.mp3" type="audio/mp3">
+            Your browser does not support the audio tag.
+        </audio>
+
+
+        <audio id="myAudio2" controls>
+            <source src="./assets/audio/kembangapi.mp3" type="audio/mp3">
+            Your browser does not support the audio tag.
+        </audio>
+
+
+    </div>
+
+
+    <div class="container">
+
+
+
+        <div class="surat" id="surat" onclick="click_surat()">
+
+            <div class="bounce">
+                <p>Luzai ini Ada Surat Buat Kamu hehe</p>
+                <img src="./assets/surat.png" alt="">
+            </div>
+        </div>
+
+
+        <div class="card" id="myCard" style="display: none;">
+
+
+            <div id="textId">
+                <h2 class="fadeIn"></h2>
+                <p style="display: none; color:white;" id="typing_text"></p>
+            </div>
+
+
+            <div class="tombol" id="tombol" style="display: none;">
+
+                <button onclick="open_finish()">Klik Disini</button>
+            </div>
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <canvas id="canvas"></canvas>
+
+    <script>
+
+        // Ketika pertama kali di load
+        window.addEventListener("load", function () {
+            setTimeout(function () {
+
+                document.getElementById("loading").classList.add("hidden");
+                document.getElementById("surat").classList.add("fadeIn");
+
+
+            }, 1000)
+        });
+
+
+        // ketika surat di klik
+        function click_surat() {
+
+            document.getElementById("surat").style.display = 'none';
+            document.getElementById("myCard").style.display = 'inline-block';
+
+            document.getElementById("myCard").classList.add("fadeIn");
+            document.getElementById("textId").classList.add("bounce");
+
+
+
+            playAudio(1)
+
+
+
+            changeTextEverySecond();
+        }
+
+
+    </script>
+
+    <script src="assets/script.js"></script>
+    <script src="assets/azcreative.js"></script>
+
+
+
+
+</body>
+
+</html>
